@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class InfoController {
     @GetMapping("/info")
-    public ResponseEntity<String> greeting() {
+    public ResponseEntity<String> info() {
         String message = "Info coming soon";
         return ResponseEntity.ok().body(message);
     }
