@@ -1,7 +1,9 @@
 package com.example.springboot;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.reflect.Array;
@@ -22,4 +24,13 @@ public class MealsController {
         return meals;
     }
 
+    @GetMapping("/meals/{name}")
+    public ResponseEntity<?> getMealName (@PathVariable String name) {
+        for(Meal meal : meals){
+            if(meal.getName().equals(name)){
+                return new ResponseEntity<Meal>(meal, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<String>("Meal not found.",HttpStatus.NOT_FOUND);
+    }
 }
