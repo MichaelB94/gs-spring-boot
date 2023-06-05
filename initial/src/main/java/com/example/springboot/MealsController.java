@@ -15,7 +15,7 @@ import java.util.List;
 public class MealsController {
     public List<Meal> meals = Arrays.asList(
             new Meal("Pasta Pesto","Deliziose linguine al pesto di basilico",12.99),
-            new Meal("Pizza","Semplicemente Margherita: con pomodoro fresco e fiordilatte",10),
+            new Meal("Pizza","Semplicemente Margherita : con pomodoro fresco e fiordilatte",10),
             new Meal("Tagliere misto","Selezione dei migliori salumi italiani",7.50)
             );
 
@@ -27,7 +27,17 @@ public class MealsController {
     @GetMapping("/meals/{name}")
     public ResponseEntity<?> getMealName (@PathVariable String name) {
         for(Meal meal : meals){
-            if(meal.getName().equals(name)){
+            if(meal.getName().toLowerCase().equals(name.toLowerCase())){
+                return new ResponseEntity<Meal>(meal, HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<String>("Meal not found.",HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/meals/description-match/{description}")
+    public ResponseEntity<?> getMealDescription (@PathVariable String description) {
+        for(Meal meal : meals){
+            if(meal.getDescription().toLowerCase().contains(description.toLowerCase())){
                 return new ResponseEntity<Meal>(meal, HttpStatus.OK);
             }
         }
