@@ -43,4 +43,22 @@ public class MealsController {
         }
         return new ResponseEntity<String>("Meal not found.",HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/meals/price/{lowerPrice}/{upperPrice}")
+    public ResponseEntity<?> getMealPrice (@PathVariable Double lowerPrice,@PathVariable Double upperPrice) {
+        List<Meal> mealInRange = new ArrayList<Meal>();
+        for(Meal meal : meals){
+            if(lowerPrice < meal.getPrice() && meal.getPrice() < upperPrice){
+                mealInRange.add(meal);
+            }
+        }
+        if (!mealInRange.isEmpty()) {
+            return new ResponseEntity<List<Meal>>(mealInRange, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>("No meals found within the specified price range.", HttpStatus.NOT_FOUND);
+        }
+    }
 }
+
+// 3 - In the method, add two query parameters "min" and "max" using the @RequestParam annotation.
+// 4 - Return a list of Meal objects with prices within the specified range.
