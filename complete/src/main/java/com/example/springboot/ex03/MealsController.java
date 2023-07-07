@@ -11,11 +11,11 @@ import java.util.List;
 
 @RestController
 public class MealsController {
-    public List<Meal> meals = Arrays.asList(
+    public List<Meal> meals = new ArrayList<>(Arrays.asList(
             new Meal("Pasta Pesto","Deliziose linguine al pesto di basilico",12.99),
             new Meal("Pizza","Semplicemente Margherita : con pomodoro fresco e fiordilatte",10),
             new Meal("Tagliere misto","Selezione dei migliori salumi italiani",7.50)
-            );
+            ));
 
     @GetMapping("/meals")
     public List<Meal> getMeals() {
@@ -58,8 +58,8 @@ public class MealsController {
     }
 
     @PostMapping("/meals")
-    public ResponseEntity<String> addMeal(@RequestBody Meal newMeal) {
-        meals.add(newMeal);
+    public ResponseEntity<String> addMeal(@RequestBody Meal meal) {
+        meals.add(meal);
         return ResponseEntity.ok("New meal added");
     }
 
