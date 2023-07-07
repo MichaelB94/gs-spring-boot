@@ -1,6 +1,7 @@
-package com.example.springboot.ex4;
+package com.example.springboot.ex04;
 
-import com.example.springboot.Meal;
+
+import com.example.springboot.ex03.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

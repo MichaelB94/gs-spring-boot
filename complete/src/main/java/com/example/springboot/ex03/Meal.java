@@ -1,4 +1,4 @@
-package com.example.springboot;
+package com.example.springboot.ex03;
 
 public class Meal {
     private String name;

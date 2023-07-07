@@ -1,6 +1,7 @@
-package com.example.springboot.ex4;
+package com.example.springboot.ex04;
 
-import com.example.springboot.Meal;
+
+import com.example.springboot.ex03.Meal;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
