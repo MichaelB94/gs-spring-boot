@@ -77,11 +77,11 @@ public class MealsController {
     }
 
     @DeleteMapping("/meals/{name}")
-    public ResponseEntity<String> deleteMeal(@PathVariable String name) {
+    public ResponseEntity<?> deleteMeal(@PathVariable String name) {
         for (Meal meal : meals) {
             if (meal.getName().equals(name)) {
                 meals.remove(meal);
-                return ResponseEntity.ok("Meal deleted");
+                return new ResponseEntity<List<Meal>>(meals,HttpStatus.OK);
             }
         }
         return ResponseEntity.notFound().build();
@@ -89,8 +89,7 @@ public class MealsController {
 
 
     @DeleteMapping("/meals/upper_to/{price}")
-
-    public ResponseEntity<String> deleteMealsAbovePrice(@PathVariable double price) {
+    public ResponseEntity<?> deleteMealsAbovePrice(@PathVariable double price) {
         List<Meal> mealsToRemove = new ArrayList<>();
         for (Meal meal : meals) {
             if (meal.getPrice() > price) {
@@ -98,14 +97,14 @@ public class MealsController {
             }
         }
         meals.removeAll(mealsToRemove);
-        return ResponseEntity.ok("Meal deleted");
+        return new ResponseEntity<List<Meal>>(meals,HttpStatus.OK);
     }
 
     @PutMapping("/update/meals_price/{name}")
-    public ResponseEntity<String> updateMealPrice(@PathVariable String name, @RequestBody Double updatedPrice) {
+    public ResponseEntity<String> updateMealPrice(@PathVariable String name, @RequestBody Double price) {
         for (Meal meal : meals) {
             if (meal.getName().equals(name)) {
-                meal.setPrice(updatedPrice);
+                meal.setPrice(price);
                 return ResponseEntity.ok("Meal price updated");
             }
         }
