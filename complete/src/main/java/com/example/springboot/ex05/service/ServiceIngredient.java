@@ -1,11 +1,13 @@
-package com.example.springboot.ex05;
+package com.example.springboot.ex05.service;
 
+import com.example.springboot.ex05.model.EntityIngredient;
+import com.example.springboot.ex05.repository.RepositoryIngredient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ServiceIngredient {
     private RepositoryIngredient ingredientRepository;
 

@@ -1,4 +1,4 @@
-package com.example.springboot.ex05;
+package com.example.springboot.ex05.model;
 
 import jakarta.persistence.*;
 
@@ -32,6 +32,9 @@ public class EntityIngredient {
         this.isVegan = isVegan;
         this.isGlutenFree = isGlutenFree;
         this.isLactoseFree = isLactoseFree;
+    }
+
+    public EntityIngredient() {
     }
 
     public Long getId() {
